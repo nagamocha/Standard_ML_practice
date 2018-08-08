@@ -291,6 +291,14 @@ and returns a pair (d,n2) where d is the number of times
 while n2 is the resulting n after all those divisions.
 Examples: fullDivide(2,40)=(3,5) because 2*2*2*5=40
 and fullDivide((3,10))=(0,10) because 3 does not divide 10.*)
+fun fullDivide(k: int, n: int) =
+    let
+        fun calc(n: int, count: int) =
+            if n mod k <> 0 then (count, n)
+            else calc(n div k, count + 1)
+    in
+        calc(n, 0)
+    end
 
 
 (*Using fullDivide, write a function factorize:int->(int*int)list that given a number n
@@ -302,11 +310,31 @@ you should not need to test if the divisors are prime: If a number divides into 
 it must be prime (if it had prime factors, they would have been earlier prime factors
 of n and thus reduced earlier).
 Examples: factorize(20)=[(2,2),(5,1)]; factorize(36)=[(2,2),(3,2)]; factorize(1)=[].*)
+fun factorize(n: int) =
+    let
+        fun calc(n: int, x: int) =
+            let val px  = fullDivide(x,n) in
+                if n = 1 then []
+                else if (#1 px) = 0 then calc(n, x + 1)
+                else (x, #1 px) :: calc(#2 px, x + 1)
+                end
+    in
+        calc(n,2)
+    end
 
 
 (*function multiply:(int*int)list->int that given a factorization of a number n
 as described in the previous problem computes back the number n.
 So this should do the opposite of factorize.*)
+fun multiply(xs: (int*int) list) =
+    let
+        fun pow(a,b) =
+            if b = 1 then a
+            else a * pow(a, b-1)
+    in
+        if null xs then 1
+        else pow(hd xs) * multiply(tl xs)
+    end
 
 
 (*Challenge (hard): Write a function all_products:(int*int)list->intlist

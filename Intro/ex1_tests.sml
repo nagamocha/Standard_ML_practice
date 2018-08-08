@@ -1,44 +1,44 @@
 use "ex1.sml";
 
 (*assume non-empty list of ints*)
-val test1 = alternate([1,2,3,4]) = ~2
+val test01 = alternate([1,2,3,4]) = ~2
             andalso alternate([1,2,3]) = 2
             andalso alternate([1]) = 1
 
-val test2 = min_max([1,1,1,1,1]) = (1,1)
+val test02 = min_max([1,1,1,1,1]) = (1,1)
             andalso min_max([2]) = (2,2)
             andalso min_max([2,1]) = (1,2)
             andalso min_max([9,4,5,1,5,4,2,5,9]) = (1,9)
 
-val test3 = cum_sum([1,4,20]) = [1,5,25]
+val test03 = cum_sum([1,4,20]) = [1,5,25]
             andalso cum_sum([1]) = [1]
             andalso cum_sum([]) = []
             andalso cum_sum([0,0,0]) = [0,0,0]
 
-val test4 = greeting(NONE) = "Hello there, you!"
+val test04 = greeting(NONE) = "Hello there, you!"
             andalso greeting(SOME "Mary") = "Hello there, Mary!"
 
-val test5 = repeat([1,2,3],[4,0,3]) = [1,1,1,1,3,3,3]
+val test05 = repeat([1,2,3],[4,0,3]) = [1,1,1,1,3,3,3]
             andalso repeat([1],[6]) = [1,1,1,1,1,1]
             andalso repeat([5],[0]) = []
             andalso repeat([],[]) = []
 
-val test6 = addOpt(SOME 1, SOME 2) = SOME 3
+val test06 = addOpt(SOME 1, SOME 2) = SOME 3
             andalso addOpt(NONE, SOME 2) = NONE
             andalso addOpt(NONE, NONE) = NONE
             andalso addOpt(SOME 1, NONE) = NONE
 
-val test7 = addAllOpt([SOME 1, SOME 2, SOME 3]) = SOME 6
+val test07 = addAllOpt([SOME 1, SOME 2, SOME 3]) = SOME 6
             andalso addAllOpt([NONE, SOME 10, SOME 20]) = SOME 30
             andalso addAllOpt([NONE, NONE]) = NONE
             andalso addAllOpt([]) = NONE
 
-val test8 = any([]) = false
+val test08 = any([]) = false
             andalso any([false, false, false]) = false
             andalso any([false, false, true]) = true
             andalso any([true]) = true
 
-val test9 = all([]) = true
+val test09 = all([]) = true
             andalso all([true, true, true]) = true
             andalso all([true, true, false]) = false
             andalso all([false]) = false
@@ -121,6 +121,22 @@ val test21 = not_so_quick_sort([1,7,2,8,3,9,10]) = [1,2,3,7,8,9,10]
             andalso not_so_quick_sort([5]) = [5]
             andalso not_so_quick_sort([10,1]) = [1,10]
             andalso not_so_quick_sort([10,9,8,7,6,5]) = [5,6,7,8,9,10]
+
+val test22 = fullDivide(2,40) = (3,5)
+            andalso fullDivide(3,10) = (0,10)
+
+val test23 = factorize(1)=[]
+            andalso factorize(2) = [(2,1)]
+            andalso factorize(13) = [(13,1)]
+            andalso factorize(20) = [(2,2),(5,1)]
+            andalso factorize(36) = [(2,2),(3,2)]
+
+val test24 = multiply(factorize 1) = 1
+            andalso multiply( factorize 2) = 2
+            andalso multiply( factorize 13) = 13
+            andalso multiply( factorize 20) = 20
+            andalso multiply( factorize 36) = 36
+
 (*
 *)
 
